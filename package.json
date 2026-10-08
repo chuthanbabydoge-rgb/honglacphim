@@ -1,0 +1,56 @@
+{
+  "name": "honglac-desktop",
+  "version": "1.0.0",
+  "description": "HongLac desktop app - local Electron wrapper for the film production workspace",
+  "author": "HongLac",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win nsis portable",
+    "dist:mac": "electron-builder --mac dmg",
+    "dist:linux": "electron-builder --linux AppImage",
+    "dist:dir": "electron-builder --dir"
+  },
+  "devDependencies": {
+    "electron": "44.6.0",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "vn.honglac.desktop",
+    "productName": "HongLac",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "index.html",
+      "desktop/**/*",
+      "package.json"
+    ],
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    }
+  }
+}
